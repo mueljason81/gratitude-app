@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Gratitude for {{ date }}{% endblock %}
+{% block content %}
+<h1>Gratitude for {{ date }}</h1>
+{% if entries %}
+    <ul>
+    {% for entry in entries %}
+        <li>{{ entry.text }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No gratitude entries for this day.</p>
+{% endif %}
+<a href="/calendar">Back to Calendar</a>
+{% endblock %}

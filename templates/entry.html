@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Gratitude Entry{% endblock %}
+
+{% block pre_content %}
+<header>
+    <h1>My Morning Gratitudes</h1>
+    <h2 class="tagline">You have a lot to be grateful for!</h2>
+    <ul class="gratitude-pillars">
+        <li>👩 Nikola</li>
+        <li>👧 Maisie</li>
+        <li>🐶 Rigby</li>
+    </ul>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <form id="gratitude-form">
+        <textarea id="gratitude-input" placeholder="What are you grateful for today?" rows="3"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="gratitudes-list">
+        <!-- Gratitudes will be displayed here -->
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}

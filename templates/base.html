@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Morning Gratitudes{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <button class="hamburger-menu" aria-label="Open navigation menu">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <a href="/" class="nav-brand">🚵 Jason's Gratitude Journal</a>
+        <ul class="nav-links">
+                        <li class="{% if active_page == 'entry' %}active{% endif %}"><a href="/"><i class="fa-solid fa-pen-to-square"></i> Today's Entry</a></li>
+            <li class="{% if active_page == 'calendar' %}active{% endif %}"><a href="/calendar"><i class="fa-solid fa-calendar-days"></i> Calendar</a></li>
+        </ul>
+    </nav>
+    <div class="content-wrapper">
+        {% block pre_content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% block scripts %}{% endblock %}
+<script>
+    const hamburger = document.querySelector('.hamburger-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+</script>
+</body>
+</html>

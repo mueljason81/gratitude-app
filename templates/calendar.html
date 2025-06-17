@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Gratitude Calendar{% endblock %}
+
+{% block content %}
+<header>
+    <h1>Gratitude Calendar</h1>
+</header>
+<main>
+    <div id="calendar-view">
+        <!-- Calendar will be rendered here by JavaScript -->
+    </div>
+</main>
+
+<!-- Gratitude Modal -->
+<div id="gratitude-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modal-date"></h2>
+        <div id="modal-gratitudes"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="{{ url_for('static', filename='calendar.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,317 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: -1;
+}
+
+.navbar {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: flex-start; /* Hamburger Menu */
+    align-items: center;
+    position: relative; /* Needed for absolute positioning of children */
+}
+
+.hamburger-menu {
+    display: none;
+    font-size: 1.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    z-index: 1001;
+}
+
+.navbar .nav-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1c1e21;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar .nav-links li {
+    margin-left: 20px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #333; /* Charcoal Grey */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-links a i {
+    margin-right: 8px; /* Space between icon and text */
+}
+
+.navbar .nav-links a:hover,
+.navbar .nav-links .active a {
+    text-decoration: none;
+}
+
+.navbar .nav-links .active a {
+    border-bottom: 2px solid black;
+    padding-bottom: 2px;
+}
+
+.content-wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+header h1 {
+    text-align: center;
+    color: #1c1e21;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    text-align: center;
+    font-size: 1.2em;
+    color: #606770;
+    margin-bottom: 30px;
+    font-weight: normal;
+}
+
+#gratitude-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #dddfe2;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+#gratitude-form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #1877f2;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#gratitude-form button:hover {
+    background-color: #166fe5;
+}
+
+#gratitudes-list {
+    margin-top: 30px;
+}
+
+.gratitude-item {
+    background-color: #f7f8fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #1877f2;
+}
+
+.gratitude-item .date {
+    font-size: 0.8em;
+    color: #606770;
+    margin-bottom: 5px;
+}
+
+.gratitude-item .text {
+    font-size: 1em;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .navbar .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Start off-screen */
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 5rem;
+        transition: left 0.3s ease-in-out;
+        z-index: 1000;
+        /* Reset absolute positioning from desktop */
+        transform: none;
+        box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar .nav-links.active {
+        left: 0; /* Slide in */
+    }
+
+    .navbar .nav-links li {
+        margin: 0;
+        width: 100%;
+    }
+
+    .navbar .nav-links li a {
+        padding: 1rem 2rem;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .navbar .nav-links .active a {
+        border-bottom: none; /* Remove underline for mobile active link */
+        font-weight: bold;
+    }
+    
+    .hamburger-menu {
+        display: block;
+    }
+
+    .navbar {
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-brand {
+        font-size: 1.2em; /* Adjusted for mobile view */
+        white-space: nowrap;
+        /* No longer needs absolute positioning */
+    }
+}
+
+/* Calendar View */
+#calendar-view {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.fc-day-today {
+    background-color: #fcf8e3 !important; /* A light yellow for today's date */
+}
+
+.day-has-gratitude,
+.day-has-gratitude *,
+.day-has-gratitude .fc-daygrid-day-frame {
+    cursor: pointer !important;
+}
+.day-has-gratitude {
+    background-color: #d4edda !important; /* Light green for days with gratitude */
+    border-radius: 3px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1001; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modal-date {
+    margin-top: 0;
+    color: #1c1e21;
+}
+
+#modal-gratitudes .gratitude-item {
+    background-color: #f7f8fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border-left: 4px solid #1877f2;
+}
+
+/* Gratitude Pillars */
+.gratitude-pillars {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    color: #606770; /* Same as tagline */
+}
+
+.gratitude-pillars li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.1em;
+}
