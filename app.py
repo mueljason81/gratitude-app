@@ -43,11 +43,21 @@ def add_gratitude():
 def calendar():
     return render_template('calendar.html', active_page='calendar')
 
+from dateutil import parser
+import pytz
+
 @app.route('/gratitude/<date>')
 def gratitude_for_day(date):
     # date is in YYYY-MM-DD format
-    entries = Gratitude.query.filter(Gratitude.timestamp.startswith(date)).all()
-    return render_template('gratitude_day.html', date=date, entries=entries)
+    tz = pytz.timezone('US/Pacific')
+    entries = Gratitude.query.all()
+    matching = []
+    for g in entries:
+        utc_dt = parser.isoparse(g.timestamp)
+        local_dt = utc_dt.astimezone(tz)
+        if local_dt.strftime('%Y-%m-%d') == date:
+            matching.append(g)
+    return render_template('gratitude_day.html', date=date, entries=matching)
 
 @app.route('/initdb')
 def initdb():
