@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Gratitude for {{ date }}{% endblock %}
 {% block content %}
-<h1>Gratitude for {{ date }}</h1>
+<h1>{{ hero }}</h1>
 {% if entries %}
     <ul>
     {% for entry in entries %}
-        <li>{{ entry.text }}</li>
+        <li>
+            {{ entry.text }}
+            {% if entry.image_url %}<br>
+                <img src="{{ entry.image_url }}" alt="Generated image for gratitude" width="256">
+            {% endif %}
+        </li>
     {% endfor %}
     </ul>
 {% else %}
